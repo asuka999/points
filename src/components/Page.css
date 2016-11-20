@@ -1,0 +1,22 @@
+.Page {
+  height: 100%;
+  width: 100%;
+  padding: 80px 100px;
+  box-sizing: border-box;
+  position: absolute;
+  transition: opacity 300ms;
+  opacity: 0;
+  z-index: -1;
+  top: 0;
+
+  &.is-active {
+    position: relative;
+    opacity: 1;
+    z-index: 0;
+  }
+
+  @media print {
+    height: auto;
+    opacity: 1;
+  }
+}

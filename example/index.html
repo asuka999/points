@@ -1,0 +1,135 @@
+<!DOCTYPE html><html><head><meta/><meta name="viewport" content="width=device-width, initial-scale=1"/><link href="public/style.css" rel="stylesheet" type="text/css"/><title></title></head><body><div id="app" class="App"><div class="Episode is-active"><div class="Page is-active"><div>
+      <h2>
+        <a name="分点语法" class="anchor" href="#分点语法">
+          <span class="header-link"></span>
+        </a>
+        分点语法
+      </h2></div><ul><li>
+      <h3>
+        <a name="局限性" class="anchor" href="#局限性">
+          <span class="header-link"></span>
+        </a>
+        局限性
+      </h3></li><li>
+      <h3>
+        <a name="语法" class="anchor" href="#语法">
+          <span class="header-link"></span>
+        </a>
+        语法
+      </h3></li></ul></div><div class="Page"><div class="Page-content markdown-body">
+      <h3>
+        <a name="局限性" class="anchor" href="#局限性">
+          <span class="header-link"></span>
+        </a>
+        局限性
+      </h3><ul>
+<li><code>module.exports = var</code>无法代替</li>
+<li><code>require(&#39;./es6export&#39;).test</code>并不是 引入<code>default.test</code>而是跟<code>default</code>同级的<code>test</code></li>
+<li><code>import a from &#39;./es5module.exports&#39;</code> 引入的是 <code>module.exports</code> 的东西</li>
+</ul>
+</div></div><div class="Page"><div class="Page-content markdown-body">
+      <h3>
+        <a name="语法" class="anchor" href="#语法">
+          <span class="header-link"></span>
+        </a>
+        语法
+      </h3><p>export 支持语法</p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> a
+<span class="hljs-comment">// exports.default = a</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {  obj1 <span class="hljs-keyword">as</span> o ,  foo1 <span class="hljs-keyword">as</span> f}
+<span class="hljs-comment">// exports.default = { o : obj1 , f: foo1}</span>
+
+<span class="hljs-keyword">export</span> {listen}
+<span class="hljs-keyword">export</span> {listen <span class="hljs-keyword">as</span> listen}
+<span class="hljs-comment">// exports.listen = listen</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">var</span> e = <span class="hljs-number">2.71828182846</span>;
+<span class="hljs-comment">// exports.e = 2.71828182846</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span> (<span class="hljs-params"></span>)</span>{}
+<span class="hljs-comment">// exports.sum = function (){}</span>
+</code></pre>
+<p>以下是错误示范</p>
+<pre><code class="lang-js"><span class="hljs-keyword">export</span> { <span class="hljs-attr">listen</span> : listen}
+<span class="hljs-keyword">export</span> a
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}
+</code></pre>
+<p>import 支持语法</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> <span class="hljs-string">'./file'</span>
+<span class="hljs-comment">// require('./file')</span>
+
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> a <span class="hljs-keyword">from</span> <span class="hljs-string">'a'</span>
+<span class="hljs-comment">// var a = require('a')</span>
+
+<span class="hljs-keyword">import</span> a <span class="hljs-keyword">from</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'a'</span>
+<span class="hljs-comment">// var a = require('a').default</span>
+
+<span class="hljs-keyword">import</span> {a} <span class="hljs-keyword">from</span> <span class="hljs-string">'a'</span>
+<span class="hljs-comment">// var a = reqiure('a').a</span>
+</code></pre>
+</div></div></div><div class="Episode"><div class="Page"><div>
+      <h2>
+        <a name="分页语法" class="anchor" href="#分页语法">
+          <span class="header-link"></span>
+        </a>
+        分页语法
+      </h2></div><ul><li>
+      <h3>
+        <a name="AMD" class="anchor" href="#AMD">
+          <span class="header-link"></span>
+        </a>
+        AMD
+      </h3></li><li>
+      <h3>
+        <a name="CMD" class="anchor" href="#CMD">
+          <span class="header-link"></span>
+        </a>
+        CMD
+      </h3></li><li>
+      <h3>
+        <a name="CommonJS规范" class="anchor" href="#CommonJS规范">
+          <span class="header-link"></span>
+        </a>
+        CommonJS规范
+      </h3></li></ul></div><div class="Page"><div class="Page-content markdown-body">
+      <h3>
+        <a name="AMD" class="anchor" href="#AMD">
+          <span class="header-link"></span>
+        </a>
+        AMD
+      </h3><p>Asynchronous Module Definition(异步模块定义), 将等其所依赖的模块一一加载后才会被执行, 实现: RequireJS</p>
+<pre><code class="lang-js">define(<span class="hljs-string">"module"</span>, [<span class="hljs-string">"./file1"</span>, <span class="hljs-string">"./file2"</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d1, d2</span>) </span>{
+  <span class="hljs-keyword">return</span> exports;
+});
+<span class="hljs-built_in">require</span>([<span class="hljs-string">"module"</span>, <span class="hljs-string">"../file"</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, file</span>) </span>{ <span class="hljs-comment">/* ... */</span> });
+</code></pre>
+</div></div><div class="Page"><div class="Page-content markdown-body">
+      <h3>
+        <a name="CMD" class="anchor" href="#CMD">
+          <span class="header-link"></span>
+        </a>
+        CMD
+      </h3><p>实现: seaJs</p>
+<pre><code class="lang-js">define(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-keyword">require</span>, exports, <span class="hljs-keyword">module</span>)</span> <span class="hljs-comment">{
+  var a = require('./a')
+  exports.a = 2.14
+  module.exports = 2.14
+}</span>);</span>
+</code></pre>
+</div></div><div class="Page"><div class="Page-content markdown-body">
+      <h3>
+        <a name="CommonJS规范" class="anchor" href="#CommonJS规范">
+          <span class="header-link"></span>
+        </a>
+        CommonJS规范
+      </h3><p>实现 node</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">'./file'</span>)</span></span>
+
+exports<span class="hljs-selector-class">.a</span> = <span class="hljs-number">2.14</span>
+module<span class="hljs-selector-class">.exports</span> = <span class="hljs-number">2.14</span>
+</code></pre>
+</div></div></div></div><script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            config: ["TeX-AMS-MML_HTMLorMML.js"],
+            tex2jax: {inlineMath: [['$','$'], ['\(','\)']]}
+          })</script><script>__initialState__={"items":[{"level":2,"title":"分点语法","points":[{"heading":"\n      <h3>\n        <a name=\"局限性\" class=\"anchor\" href=\"#局限性\">\n          <span class=\"header-link\"></span>\n        </a>\n        局限性\n      </h3>","title":"局限性"},{"heading":"\n      <h3>\n        <a name=\"语法\" class=\"anchor\" href=\"#语法\">\n          <span class=\"header-link\"></span>\n        </a>\n        语法\n      </h3>","title":"语法"}],"heading":"\n      <h2>\n        <a name=\"分点语法\" class=\"anchor\" href=\"#分点语法\">\n          <span class=\"header-link\"></span>\n        </a>\n        分点语法\n      </h2>","contents":["\n      <h3>\n        <a name=\"局限性\" class=\"anchor\" href=\"#局限性\">\n          <span class=\"header-link\"></span>\n        </a>\n        局限性\n      </h3><ul>\n<li><code>module.exports = var</code>无法代替</li>\n<li><code>require(&#39;./es6export&#39;).test</code>并不是 引入<code>default.test</code>而是跟<code>default</code>同级的<code>test</code></li>\n<li><code>import a from &#39;./es5module.exports&#39;</code> 引入的是 <code>module.exports</code> 的东西</li>\n</ul>\n","\n      <h3>\n        <a name=\"语法\" class=\"anchor\" href=\"#语法\">\n          <span class=\"header-link\"></span>\n        </a>\n        语法\n      </h3><p>export 支持语法</p>\n<pre><code class=\"lang-js\"><span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> a\n<span class=\"hljs-comment\">// exports.default = a</span>\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> {  obj1 <span class=\"hljs-keyword\">as</span> o ,  foo1 <span class=\"hljs-keyword\">as</span> f}\n<span class=\"hljs-comment\">// exports.default = { o : obj1 , f: foo1}</span>\n\n<span class=\"hljs-keyword\">export</span> {listen}\n<span class=\"hljs-keyword\">export</span> {listen <span class=\"hljs-keyword\">as</span> listen}\n<span class=\"hljs-comment\">// exports.listen = listen</span>\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">var</span> e = <span class=\"hljs-number\">2.71828182846</span>;\n<span class=\"hljs-comment\">// exports.e = 2.71828182846</span>\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">sum</span> (<span class=\"hljs-params\"></span>)</span>{}\n<span class=\"hljs-comment\">// exports.sum = function (){}</span>\n</code></pre>\n<p>以下是错误示范</p>\n<pre><code class=\"lang-js\"><span class=\"hljs-keyword\">export</span> { <span class=\"hljs-attr\">listen</span> : listen}\n<span class=\"hljs-keyword\">export</span> a\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\"></span>)</span>{}\n</code></pre>\n<p>import 支持语法</p>\n<pre><code class=\"lang-js\"><span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'./file'</span>\n<span class=\"hljs-comment\">// require('./file')</span>\n\n<span class=\"hljs-keyword\">import</span> * <span class=\"hljs-keyword\">as</span> a <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'a'</span>\n<span class=\"hljs-comment\">// var a = require('a')</span>\n\n<span class=\"hljs-keyword\">import</span> a <span class=\"hljs-keyword\">from</span> <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'a'</span>\n<span class=\"hljs-comment\">// var a = require('a').default</span>\n\n<span class=\"hljs-keyword\">import</span> {a} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'a'</span>\n<span class=\"hljs-comment\">// var a = reqiure('a').a</span>\n</code></pre>\n"]},{"level":2,"title":"分页语法","points":[{"heading":"\n      <h3>\n        <a name=\"AMD\" class=\"anchor\" href=\"#AMD\">\n          <span class=\"header-link\"></span>\n        </a>\n        AMD\n      </h3>","title":"AMD"},{"heading":"\n      <h3>\n        <a name=\"CMD\" class=\"anchor\" href=\"#CMD\">\n          <span class=\"header-link\"></span>\n        </a>\n        CMD\n      </h3>","title":"CMD"},{"heading":"\n      <h3>\n        <a name=\"CommonJS规范\" class=\"anchor\" href=\"#CommonJS规范\">\n          <span class=\"header-link\"></span>\n        </a>\n        CommonJS规范\n      </h3>","title":"CommonJS规范"}],"heading":"\n      <h2>\n        <a name=\"分页语法\" class=\"anchor\" href=\"#分页语法\">\n          <span class=\"header-link\"></span>\n        </a>\n        分页语法\n      </h2>","contents":["\n      <h3>\n        <a name=\"AMD\" class=\"anchor\" href=\"#AMD\">\n          <span class=\"header-link\"></span>\n        </a>\n        AMD\n      </h3><p>Asynchronous Module Definition(异步模块定义), 将等其所依赖的模块一一加载后才会被执行, 实现: RequireJS</p>\n<pre><code class=\"lang-js\">define(<span class=\"hljs-string\">\"module\"</span>, [<span class=\"hljs-string\">\"./file1\"</span>, <span class=\"hljs-string\">\"./file2\"</span>], <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">d1, d2</span>) </span>{\n  <span class=\"hljs-keyword\">return</span> exports;\n});\n<span class=\"hljs-built_in\">require</span>([<span class=\"hljs-string\">\"module\"</span>, <span class=\"hljs-string\">\"../file\"</span>], <span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span>(<span class=\"hljs-params\">module, file</span>) </span>{ <span class=\"hljs-comment\">/* ... */</span> });\n</code></pre>\n","\n      <h3>\n        <a name=\"CMD\" class=\"anchor\" href=\"#CMD\">\n          <span class=\"header-link\"></span>\n        </a>\n        CMD\n      </h3><p>实现: seaJs</p>\n<pre><code class=\"lang-js\">define(<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span><span class=\"hljs-params\">(<span class=\"hljs-keyword\">require</span>, exports, <span class=\"hljs-keyword\">module</span>)</span> <span class=\"hljs-comment\">{\n  var a = require('./a')\n  exports.a = 2.14\n  module.exports = 2.14\n}</span>);</span>\n</code></pre>\n","\n      <h3>\n        <a name=\"CommonJS规范\" class=\"anchor\" href=\"#CommonJS规范\">\n          <span class=\"header-link\"></span>\n        </a>\n        CommonJS规范\n      </h3><p>实现 node</p>\n<pre><code class=\"lang-js\"><span class=\"hljs-function\"><span class=\"hljs-title\">require</span><span class=\"hljs-params\">(<span class=\"hljs-string\">'./file'</span>)</span></span>\n\nexports<span class=\"hljs-selector-class\">.a</span> = <span class=\"hljs-number\">2.14</span>\nmodule<span class=\"hljs-selector-class\">.exports</span> = <span class=\"hljs-number\">2.14</span>\n</code></pre>\n"]}]}</script><script src="public/app.js"></script></body></html>

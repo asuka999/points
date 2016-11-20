@@ -1,0 +1,8 @@
+.Episode {
+
+  &.is-active {
+    height: 100%;
+    overflow: hidden;
+  }
+
+}
