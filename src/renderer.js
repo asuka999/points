@@ -62,7 +62,6 @@ export default function renderer({main, scripts, links, title = ''}) {
 
   const props = {
     scripts: [
-      
       {
         type: 'text/x-mathjax-config',
         script: `
