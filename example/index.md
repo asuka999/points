@@ -15,16 +15,27 @@ https://www.aliexpress.com/
 https://www.pokedex.org/
 https://airhorner.com/
 
-### 技术依赖
-- service worker ( 间接依赖 https)
-- manifest
+## about 技术
 
+- service worker ( 间接依赖 https)
 ### manifest
+
 https://developer.mozilla.org/en-US/docs/Web/Manifest
 https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+- app shell
+> the shell files are loaded once over the network and then saved to the local device.
+- 首屏 ui，核心组件
+- 不包括：dialog，notification，
+
 
 ## 开发
 － Web Server for Chrome
+
+- App shell architecture separates the core application infrastructure and UI from the data. 
+
+
+
+
 
 ## 应用
 
@@ -39,7 +50,9 @@ https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifes
 
 
 
-
+https://codelabs.developers.google.com/codelabs/your-first-pwapp/#3
+https://developers.google.com/web/fundamentals/getting-started/primers/service-workers
+https://github.com/sundway/awesome-pwa
 
 
 浏览器支持
